@@ -8,7 +8,7 @@ pipeline {
       steps {
         withSonarQubeEnv('sq2') {
           script {
-                 sqScannerMsBuildHome = tool 'SonarScanner for MSBuild 5.4.1.41282 - .NET Core 3.0'
+                 sqScannerMsBuildHome = tool 'SonarScanner for MSBuild 5.5.3.43281 - .NET Core 3.0'
                  
             }
           sh '${sqScannerMsBuildHome}\\SonarQube.Scanner.MSBuild.exe begin /k:"ConsoleApp" /d:sonar.host.url="http://192.168.243.196:31256" /d:sonar.login="eeaf1169f5a1927f71dae0c4721de95d9b4bbcfc"'
