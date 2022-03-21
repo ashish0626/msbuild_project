@@ -6,7 +6,14 @@ pipeline {
   stages {
     stage('Scan') {
       steps {
-        withSonarQubeEnv(installationName: 'sq2') { 
+        withSonarQubeEnv(installationName: 'sq2') {
+          sh '''
+          
+          dotnet sonarscanner begin /k:"project-key"
+          dotnet build ConsoleApp.sln
+          dotnet sonarscanner end
+        
+        '''
         }
       }
     }
