@@ -6,9 +6,10 @@ pipeline {
   stages {
     stage('Scan') {
       steps {
-        def sqScannerMsBuildHome = tool 'Scanner for MSBuild 4.6'
         withSonarQubeEnv('sq2') {
-          
+          script {
+                 sqScannerMsBuildHome = tool 'Scanner for MSBuild 4.6'
+            }
           sh '${sqScannerMsBuildHome}\\SonarQube.Scanner.MSBuild.exe begin /k:"ConsoleApp" /d:sonar.host.url="http://192.168.243.196:31256" /d:sonar.login="eeaf1169f5a1927f71dae0c4721de95d9b4bbcfc"'
           sh 'MsBuild.exe /t:Rebuild'
           sh '${sqScannerMsBuildHome}\\SonarQube.Scanner.MSBuild.exe end /d:sonar.login="eeaf1169f5a1927f71dae0c4721de95d9b4bbcfc"'
