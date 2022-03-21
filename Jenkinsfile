@@ -9,7 +9,7 @@ pipeline {
         withSonarQubeEnv(installationName: 'sq2') {
           sh '''
           
-          dotnet sonarscanner begin /k:"project-key"
+          dotnet sonarscanner begin /k:"ConsoleApp"
           dotnet build ConsoleApp.sln
           dotnet sonarscanner end
         
